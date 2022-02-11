@@ -1,5 +1,7 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +14,6 @@ import static site.nomoreparties.stellarburgers.UserMethods.createUser;
 @RunWith(Parameterized.class)
 public class UserRegistrationFailedWithoutRequestedParameterTests {
 
-    //создать пользователя и не заполнить одно из обязательных полей
     private UserClient userClient;
     private User user;
 
@@ -39,6 +40,7 @@ public class UserRegistrationFailedWithoutRequestedParameterTests {
     public void setUp(){userClient = new UserClient();}
 
     @Test
+    @DisplayName("Создание пользователя без заполнения одного из обязательных полей")
     public void UserCreationFailedWithoutRequestedParameterTest(){
         user = createUser(email, password, name);
         ValidatableResponse response = UserClient.create(user);

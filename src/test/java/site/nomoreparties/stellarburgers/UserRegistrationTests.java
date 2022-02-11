@@ -1,7 +1,8 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,8 +17,8 @@ public class UserRegistrationTests {
     @Before
     public void setUp(){userClient = new UserClient();}
 
-    //создать уникального пользователя
     @Test
+    @DisplayName("Создание уникального пользователя")
     public void userCanBeCreatedTest(){
         User user = UserMethods.createRandomUser();
         ValidatableResponse response = UserClient.create(user);
@@ -31,8 +32,8 @@ public class UserRegistrationTests {
         assertEquals(expectedEmail.toLowerCase(), userEmail);
     }
 
-    //создать пользователя, который уже зарегистрирован
     @Test
+    @DisplayName("Создание пользователя, который уже зарегистрирован")
     public void userCanNotBeCreatedWithTheSameCredentialsTest(){
         User user = UserMethods.createRandomUser();
         ValidatableResponse uniqUser = UserClient.create(user);

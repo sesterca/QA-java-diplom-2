@@ -1,7 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.apache.commons.lang3.RandomStringUtils;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {

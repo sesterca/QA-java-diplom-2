@@ -1,5 +1,8 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 
 import org.junit.Assert;
@@ -26,21 +29,18 @@ public class UserGetOrdersTests {
         orderClient = new OrderClient();
         order = new Order();}
 
-    //получение заказов конкретного пользователя авторизованного
+
     @Test
+    @DisplayName("Получение заказов конкретного пользователя авторизованного")
     public void getAllOrdersAuthorizedUserTest(){
-        //создание пользователя
         userClient = new UserClient();
         user = UserMethods.createRandomUser();
         ValidatableResponse creation = userClient.create(user);
-        //авторизация
         ValidatableResponse login = userClient.login(UserCredentials.from(user));
         accessToken = login.extract().path("accessToken");
-        //создание заказа
         List<String> burger = order.makeBurger();
         Map<String, List<String>> burgerOrder = new HashMap<>();
         burgerOrder.put("ingredients", burger);
-        //отправка запроса к эндпоинту для оформление заказа
         ValidatableResponse order = orderClient.makeOrder(accessToken, burgerOrder);
         ValidatableResponse userOrders = orderClient.getOrders(accessToken);
         int statusCode = userOrders.extract().statusCode();
@@ -49,9 +49,9 @@ public class UserGetOrdersTests {
         Assert.assertNotNull("No order have made", orderNumber);
     }
 
-    //получение заказов конкретного пользователя неавторизованного
     @Test
-    public void getAllOrdersNonAuthorizedUser() {
+    @DisplayName("Получение заказов конкретного пользователя неавторизованного")
+    public void getAllOrdersNonAuthorizedUserTest() {
         userClient = new UserClient();
         user = UserMethods.createRandomUser();
         ValidatableResponse creation = userClient.create(user);

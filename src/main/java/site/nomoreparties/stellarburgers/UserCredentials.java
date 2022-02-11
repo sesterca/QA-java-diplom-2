@@ -1,5 +1,7 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Step;
+
 public class UserCredentials {
 
     public String email;
@@ -37,7 +39,7 @@ public class UserCredentials {
         this.name = name;
         return this;
     }
-
+    @Step("Получение данных полей Email и Пароль зарегистрированного пользователя")
     public static UserCredentials from(User user){
         return new UserCredentials(user.getEmail(), user.getPassword());
     }

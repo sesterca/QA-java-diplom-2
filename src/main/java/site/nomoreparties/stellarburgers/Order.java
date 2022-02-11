@@ -1,5 +1,6 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -10,6 +11,7 @@ public class Order {
 
     private List<String> burger;
 
+    @Step("Создание бургера из доступных ингредиентов")
     public List<String> makeBurger() {
 
         //получение базы данных доступных ингредиентов
@@ -34,6 +36,7 @@ public class Order {
     public String ingredientNotExist(){
         return "61c0c5a71d1f82001bdaaa" + RandomStringUtils.randomAlphanumeric(2);}
 
+    @Step("Создание бургера из несуществующих ингредиентов")
     public List<String> makeBurgerOfNonExistent() {
         burger = new ArrayList<>();
         burger.add(ingredientNotExist());

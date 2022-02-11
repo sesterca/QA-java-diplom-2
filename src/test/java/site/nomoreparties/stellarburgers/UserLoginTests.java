@@ -1,5 +1,7 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
@@ -22,8 +24,8 @@ public class UserLoginTests {
         userCredentials = userCredentials.from(user);
     }
 
-    //логин под существующим пользователем
     @Test
+    @DisplayName("Логин под существующим пользователем")
     public void userCanLoginWithValidParameters(){
         ValidatableResponse response = userClient.login(userCredentials);
         int statusCode = response.extract().statusCode();
@@ -32,9 +34,9 @@ public class UserLoginTests {
         assertEquals(true, success);
     }
 
-    //логин с неверным логином и паролем
     @Test
-    public void userCanNotLoginWithInvalidParameters(){
+    @DisplayName("Логин с неверным логином и паролем")
+    public void userCanNotLoginWithInvalidParametersTest(){
         ValidatableResponse response = userClient.login(userCredentials.from(createRandomUser()));
         int statusCode = response.extract().statusCode();
         String message = response.extract().path("message");

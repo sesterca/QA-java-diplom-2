@@ -1,16 +1,16 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
 
 public class OrderClient extends RestAssuredBase{
 
     //получение данных об ингредиентах
+    @Step("Отправка запроса к эндпоинту для получения данных об ингредиентах")
     public ValidatableResponse getIngredients(){
         return given()
                 .spec(getBaseSpec())
@@ -21,6 +21,7 @@ public class OrderClient extends RestAssuredBase{
     }
 
     //создание заказа
+    @Step("Отправка запроса к эндпоинту для создания заказа")
     public ValidatableResponse makeOrder(String accessToken, Map<String, List<String>> userOrder){
         return given()
                 .spec(getBaseSpec())
@@ -34,9 +35,8 @@ public class OrderClient extends RestAssuredBase{
                 .log().body();
     }
 
-    //
-
     //получение заказов пользователя
+    @Step("Отправка запроса к эндпоинту для получения заказов пользователя")
     public ValidatableResponse getOrders(String accessToken){
         return given()
                 .spec(getBaseSpec())

@@ -9,7 +9,6 @@ public class RestAssuredBase {
     public static RequestSpecification getBaseSpec() {
         return new RequestSpecBuilder()
                 .setBaseUri("https://stellarburgers.nomoreparties.site/api")
-                .addHeader("Content-type", "application/json")
                 .setContentType(ContentType.JSON)
                 .build();
     }

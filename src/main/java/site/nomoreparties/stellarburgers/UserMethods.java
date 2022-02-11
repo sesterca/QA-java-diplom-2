@@ -1,9 +1,11 @@
 package site.nomoreparties.stellarburgers;
 
+import io.qameta.allure.Step;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class UserMethods {
 
+    @Step("Генерация данных пользователя (рандомные данные)")
     public static User createRandomUser(){
         User user = new User();
         user.setEmail(RandomStringUtils.randomAlphabetic(5) + "@yandex.ru");
@@ -11,6 +13,7 @@ public class UserMethods {
         user.setName(RandomStringUtils.randomAlphabetic(5));
         return user;}
 
+    @Step("Генерация данных пользователя (заданные данные)")
     public static User createUser(String email, String password, String name){
         User user = new User();
         user.setEmail(email);
